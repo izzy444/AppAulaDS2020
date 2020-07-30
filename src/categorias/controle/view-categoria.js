@@ -21,9 +21,12 @@ $(document).ready(function() {
                     $('.modal-body').load('src/categorias/visao/form-categoria.html', function() {
                         $('#nome').val(dado.dados.nome)
                         $('#nome').attr('readonly', 'true')
-                        $('#dataagora').val(dado.dados.nome)
+                        $('#dataagora').val(dado.dados.datamodificacao)
                         $('#ativo').val(dado.dados.ativo)
+                        $('#ativo').attr('readonly', 'true')
                     })
+                    $('.btn-save').hide()
+                    $('.btn-update').hide()
                     $('#modal-categoria').modal('show')
                 } else {
                     Swal.fire({

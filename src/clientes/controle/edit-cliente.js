@@ -5,19 +5,19 @@ $(document).ready(function() {
         $('.modal-title').empty()
         $('.modal-body').empty()
 
-        $('.modal-title').append('Edição de categoria')
+        $('.modal-title').append('Edição de cliente')
 
-        let idcategoria = `idcategoria=${$(this).attr('id')}`
+        let idcliente = `idcliente=${$(this).attr('id')}`
 
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
             assync: true,
-            data: idcategoria,
-            url: 'src/categorias/modelo/view-categoria.php',
+            data: idcliente,
+            url: 'src/clientes/modelo/view-cliente.php',
             success: function(dado) {
                 if (dado.tipo == "success") {
-                    $('.modal-body').load('src/categorias/visao/form-categoria.html', function() {
+                    $('.modal-body').load('src/clientes/visao/form-cliente.html', function() {
                         $('#nome').val(dado.dados.nome)
                         $('#dataagora').val(dado.dados.datacriacao)
 
@@ -25,13 +25,13 @@ $(document).ready(function() {
                             $('#ativo').removeAttr('checked')
                         }
 
-                        $('#idcategoria').val(dado.dados.idcategoria)
+                        $('#idccliente').val(dado.dados.idcliente)
 
                     })
         
                     $('.btn-save').hide()
                     $('.btn-update').show()
-                    $('#modal-categoria').modal('show')
+                    $('#modal-cliente').modal('show')
                 } else {
                     Swal.fire({
                         title: 'appAulaDS',

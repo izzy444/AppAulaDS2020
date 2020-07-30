@@ -20,27 +20,27 @@ if(!$conexao){
 
         //$requestData = array_map('utf8_decode', $requestData);
 
-        $id = isset($requestData['idcategoria']) ? $requestData['idcategoria'] : '';
-
         $requestData['ativo'] = $requestData['ativo'] == "on" ? "S" : "N";
 
-        //$requestData['dataagora'] = date('Y-m-d H:i:s', strtotime($requestData['dataagora']));
+        //$requestData['dataagora'] = date('Y-d-m H:i:s', strtotime($requestData['dataagora']));
 
-        $requestData['dataagora'] = date_format(new DateTime($requestData['dataagora']), 'Y-m-d H:i:s');
+        $date = date_create_from_format('d/m/Y H:i:s', $requestData['dataagora']);
+        $requestData['dataagora'] = date_format($date, 'Y-m-d H:i:s');
 
-        $sqlComando = "UPDATE categorias SET nome = '$requestData[nome]', ativo = '$requestData[ativo]', datamodificacao = '$requestData[dataagora]'  WHERE idcategoria = $id ";
+        $sqlComando = "INSERT INTO clientes (nome,email,telefone, ativo, datacriacao, datamodificacao)
+         VALUES ('$requestData[nome]', '$requestData[ativo]', '$requestData[dataagora]', '$requestData[dataagora]')";
 
-        $resultado = mysqli_query($conexao, $sqlComando);
+         $resultado = mysqli_query($conexao, $sqlComando);
 
          if($resultado){
             $dados = array(
                 'tipo' => 'success',
-                'mensagem' => 'Categoria alterada com sucesso.'
+                'mensagem' => 'Cliente criado com sucesso.'
             );
          } else{
             $dados = array(
                 'tipo' => 'error',
-                'mensagem' => 'Não foi possível alterar a categoria.'.mysqli_error($conexao)
+                'mensagem' => 'Não foi possível criar o cliente.'.mysqli_error($conexao)
             );
          }
     }

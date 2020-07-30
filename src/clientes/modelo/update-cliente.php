@@ -20,7 +20,7 @@ if(!$conexao){
 
         //$requestData = array_map('utf8_decode', $requestData);
 
-        $id = isset($requestData['idcategoria']) ? $requestData['idcategoria'] : '';
+        $id = isset($requestData['idcliente']) ? $requestData['idcategoria'] : '';
 
         $requestData['ativo'] = $requestData['ativo'] == "on" ? "S" : "N";
 
@@ -28,19 +28,19 @@ if(!$conexao){
 
         $requestData['dataagora'] = date_format(new DateTime($requestData['dataagora']), 'Y-m-d H:i:s');
 
-        $sqlComando = "UPDATE categorias SET nome = '$requestData[nome]', ativo = '$requestData[ativo]', datamodificacao = '$requestData[dataagora]'  WHERE idcategoria = $id ";
+        $sqlComando = "UPDATE clientes SET nome = '$requestData[nome]', ativo = '$requestData[ativo]', datamodificacao = '$requestData[dataagora]'  WHERE idcliente = $id ";
 
         $resultado = mysqli_query($conexao, $sqlComando);
 
          if($resultado){
             $dados = array(
                 'tipo' => 'success',
-                'mensagem' => 'Categoria alterada com sucesso.'
+                'mensagem' => 'Cliente alterado com sucesso.'
             );
          } else{
             $dados = array(
                 'tipo' => 'error',
-                'mensagem' => 'Não foi possível alterar a categoria.'.mysqli_error($conexao)
+                'mensagem' => 'Não foi possível alterar o cliente.'.mysqli_error($conexao)
             );
          }
     }

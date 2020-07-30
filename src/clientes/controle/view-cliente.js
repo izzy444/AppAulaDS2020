@@ -1,37 +1,33 @@
 $(document).ready(function() {
-    $(document).on('click', '.btn-edit', function(e) {
+
+    $('#table-cliente').on('click', 'button.btn-view', function(e) {
         e.preventDefault()
 
         $('.modal-title').empty()
         $('.modal-body').empty()
 
-        $('.modal-title').append('Edição de categoria')
+        $('.modal-tile').append('Visualização de cliente')
 
-        let idcategoria = `idcategoria=${$(this).attr('id')}`
+        let idcategoria = `idcliente=${$(this).attr('id')}`
 
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
             assync: true,
             data: idcategoria,
-            url: 'src/categorias/modelo/view-categoria.php',
+            url: 'src/clientes/modelo/view-cliente.php',
             success: function(dado) {
                 if (dado.tipo == "success") {
-                    $('.modal-body').load('src/categorias/visao/form-categoria.html', function() {
+                    $('.modal-body').load('src/clientes/visao/form-categoria.html', function() {
                         $('#nome').val(dado.dados.nome)
-                        $('#dataagora').val(dado.dados.datacriacao)
-
-                        if (dado.dados.ativo == "N") {
-                            $('#ativo').removeAttr('checked')
-                        }
-
-                        $('#idcategoria').val(dado.dados.idcategoria)
-
+                        $('#nome').attr('readonly', 'true')
+                        $('#dataagora').val(dado.dados.datamodificacao)
+                        $('#ativo').val(dado.dados.ativo)
+                        $('#ativo').attr('readonly', 'true')
                     })
-        
                     $('.btn-save').hide()
-                    $('.btn-update').show()
-                    $('#modal-categoria').modal('show')
+                    $('.btn-update').hide()
+                    $('#modal-cliente').modal('show')
                 } else {
                     Swal.fire({
                         title: 'appAulaDS',
