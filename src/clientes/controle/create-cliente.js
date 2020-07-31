@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('.btn-save').click(function(e) {
         e.preventDefault()
 
-        let dados = $('#form-categoria').serialize()
+        let dados = $('#form-cliente').serialize()
 
         $('input[type=checkbox]').each(function() {
             if (!this.checked) {

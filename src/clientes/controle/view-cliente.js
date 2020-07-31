@@ -8,19 +8,23 @@ $(document).ready(function() {
 
         $('.modal-tile').append('Visualização de cliente')
 
-        let idcategoria = `idcliente=${$(this).attr('id')}`
+        let idcliente = `idcliente=${$(this).attr('id')}`
 
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
             assync: true,
-            data: idcategoria,
+            data: idcliente,
             url: 'src/clientes/modelo/view-cliente.php',
             success: function(dado) {
                 if (dado.tipo == "success") {
-                    $('.modal-body').load('src/clientes/visao/form-categoria.html', function() {
+                    $('.modal-body').load('src/clientes/visao/form-cliente.html', function() {
                         $('#nome').val(dado.dados.nome)
                         $('#nome').attr('readonly', 'true')
+                        $('#email').val(dado.dados.email)
+                        $('#email').attr('readonly', 'true')
+                        $('#tel').val(dado.dados.telefone)
+                        $('#tel').attr('readonly', 'true')
                         $('#dataagora').val(dado.dados.datamodificacao)
                         $('#ativo').val(dado.dados.ativo)
                         $('#ativo').attr('readonly', 'true')

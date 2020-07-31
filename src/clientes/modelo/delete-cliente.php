@@ -5,10 +5,11 @@
     if($conexao){
 
         $requestData = $_REQUEST;
+     
 
         $id = isset($requestData['idcliente']) ? $requestData['idcliente'] : '';
-
-        $sql = "DELETE FROM cliente WHERE idcliente = $id";
+        
+        $sql = "DELETE FROM clientes WHERE idcliente = $id";
 
         $resultado = mysqli_query($conexao, $sql);
 

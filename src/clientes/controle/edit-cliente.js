@@ -19,13 +19,16 @@ $(document).ready(function() {
                 if (dado.tipo == "success") {
                     $('.modal-body').load('src/clientes/visao/form-cliente.html', function() {
                         $('#nome').val(dado.dados.nome)
+                        $('#email').val(dado.dados.email)
+                        $('#tel').val(dado.dados.telefone)
+                        const datamodificacao = new Date().toLocaleString()
                         $('#dataagora').val(dado.dados.datacriacao)
 
                         if (dado.dados.ativo == "N") {
                             $('#ativo').removeAttr('checked')
                         }
 
-                        $('#idccliente').val(dado.dados.idcliente)
+                        $('#idcliente').val(dado.dados.idcliente)
 
                     })
         

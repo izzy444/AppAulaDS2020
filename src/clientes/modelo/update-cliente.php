@@ -20,15 +20,15 @@ if(!$conexao){
 
         //$requestData = array_map('utf8_decode', $requestData);
 
-        $id = isset($requestData['idcliente']) ? $requestData['idcategoria'] : '';
+        $id = isset($requestData['idcliente']) ? $requestData['idcliente'] : '';
 
         $requestData['ativo'] = $requestData['ativo'] == "on" ? "S" : "N";
 
         //$requestData['dataagora'] = date('Y-m-d H:i:s', strtotime($requestData['dataagora']));
 
-        $requestData['dataagora'] = date_format(new DateTime($requestData['dataagora']), 'Y-m-d H:i:s');
+        $requestData['datamodificacao'] = date_format(new DateTime($requestData['datamodificacao']), 'Y-m-d H:i:s');
 
-        $sqlComando = "UPDATE clientes SET nome = '$requestData[nome]', ativo = '$requestData[ativo]', datamodificacao = '$requestData[dataagora]'  WHERE idcliente = $id ";
+        $sqlComando = "UPDATE clientes SET nome = '$requestData[nome]',email = '$requestData[email]',telefone = '$requestData[tel]', ativo = '$requestData[ativo]', datamodificacao = '$requestData[datamodificacao]'  WHERE idcliente = $id ";
 
         $resultado = mysqli_query($conexao, $sqlComando);
 

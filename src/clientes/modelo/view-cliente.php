@@ -8,7 +8,7 @@
 
         $id = isset($requestData['idcliente']) ? $requestData['idcliente'] : '';
 
-        $sql = "SELECT * FROM clientes WHERE idliente = $id ";
+        $sql = "SELECT * FROM clientes WHERE idcliente = $id ";
         $resultado = mysqli_query($conexao, $sql);
 
         if($resultado && mysqli_num_rows($resultado) > 0){

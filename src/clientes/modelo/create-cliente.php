@@ -10,7 +10,7 @@ if(!$conexao){
 } else{
 
     $requestData = $_REQUEST;
-
+   
     if(empty($requestData['nome']) || empty($requestData['ativo']) ){
         $dados = array(
             'tipo' => 'info',
@@ -28,7 +28,7 @@ if(!$conexao){
         $requestData['dataagora'] = date_format($date, 'Y-m-d H:i:s');
 
         $sqlComando = "INSERT INTO clientes (nome,email,telefone, ativo, datacriacao, datamodificacao)
-         VALUES ('$requestData[nome]', '$requestData[ativo]', '$requestData[dataagora]', '$requestData[dataagora]')";
+         VALUES ('$requestData[nome]','$requestData[email]','$requestData[tel]', '$requestData[ativo]', '$requestData[dataagora]', '$requestData[dataagora]')";
 
          $resultado = mysqli_query($conexao, $sqlComando);
 
